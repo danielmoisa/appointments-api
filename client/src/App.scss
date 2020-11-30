@@ -1,0 +1,13 @@
+@import '~antd/dist/antd.css';
+
+/*Default Ant override*/
+/*Forms*/
+.ant-form {
+  .ant-row.ant-form-item {
+    flex-direction: column;
+    .ant-col.ant-form-item-label {
+      text-align: left;
+    }
+  }
+}
+/*End default Ant override*/

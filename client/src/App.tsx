@@ -1,15 +1,21 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import Services from './Services'
+import './App.scss'
 
-function App() {
+//Pages
+import SignUp from './frontend/pages/SignUp'
+
+//Components
+import Header from './frontend/components/Header'
+
+
+const App: FC = () => {
   return (
     <div id="app-wrapper">
-     <h1>Money maker</h1>
      <Router>
-       
+       <Header />
+       <Route path="/sign-up" component={SignUp} />
      </Router>
     </div>
   );
