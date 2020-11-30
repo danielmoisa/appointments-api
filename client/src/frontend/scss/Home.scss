@@ -1,0 +1,14 @@
+.ant-carousel {
+  .home-slider.slick-slider {
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    .slider-content {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
