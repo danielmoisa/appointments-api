@@ -8,7 +8,7 @@ const Header = () => {
     const [openLogin, setOpenLogin] = useState(false)
 
     const openLoginDrawer = (): void => setOpenLogin(true)
-    
+
     const closeLoginDrawer = (): void => setOpenLogin(false)
 
     return (
@@ -24,8 +24,7 @@ const Header = () => {
                 <Drawer
                     title="Create a new account"
                     width={720}
-                    onClose={openLoginDrawer}
-                    visible={closeLoginDrawer}
+              
                     bodyStyle={{ paddingBottom: 80 }}
                     footer={
                 <div
