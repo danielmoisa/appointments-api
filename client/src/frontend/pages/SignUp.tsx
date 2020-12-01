@@ -14,6 +14,10 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [role, setRole] = useState()
 
+    const handleRole = (value) => {
+        setRole(value)
+    }
+
     const createAccount = async () => {
         const result = await axios({ 
             method: 'POST',
@@ -22,6 +26,7 @@ const SignUp = () => {
             data: { username, email, role, password }
         })
     }
+    
 
     return (
         <Row className="sign-up-wrapper">
@@ -56,7 +61,7 @@ const SignUp = () => {
                         name="role"
                         rules={[{ required: true, message: 'Please input your role!' }]}
                     >
-                        <Select value={role} onChange={(e) => setRole(e.target.value)}>
+                        <Select value={role} onChange={handleRole}>
                             <Option value="CUSTOMER">CUSTOMER</Option>
                             <Option value="BUSINESS">BUSINESS</Option>
                         </Select>
