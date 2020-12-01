@@ -1,5 +1,5 @@
-.sign-up-wrapper {
-  .signup-form {
+.sign-in-wrapper {
+  .signin-form {
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     padding: 30px;
     .title,
@@ -8,9 +8,6 @@
     }
     .description {
       margin-bottom: 25px;
-    }
-    .ant-form-item {
-      margin-bottom: 15px;
     }
   }
 }

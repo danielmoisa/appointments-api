@@ -23,10 +23,14 @@ const SignUp = () => {
 				url: "http://localhost:4000/auth/signup",
 				headers: { "Content-Type": "application/json" },
 				data: { username, email, role, password },
-			});
+            });
+            setUsername('')
+            setEmail('')
+            setRole('')
+            setPassword('')
 		} catch (error) {
 			console.log(error.response.data.message);
-		}
+        }
 	};
 
 	return (
