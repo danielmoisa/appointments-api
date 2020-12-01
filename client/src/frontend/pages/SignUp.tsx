@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import { Row, Col, Form, Input, Button, Checkbox } from 'antd';
+import { Row, Col, Form, Input, Button, Checkbox, Select } from 'antd';
 
 import '../scss/SignUp.scss'
 
+
+const { Option } = Select;
 
 
 const SignUp = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [role, setRole] = useState()
 
     const createAccount = async () => {
         const result = await axios({ 
             method: 'POST',
             url: 'http://localhost:4000/auth/signup',
             headers: { 'Content-Type': 'application/json' },
-            data: { username, password }
+            data: { username, email, role, password }
         })
     }
-
-    
 
     return (
         <Row className="sign-up-wrapper">
@@ -39,6 +41,25 @@ const SignUp = () => {
                         rules={[{ required: true, message: 'Please input your username!' }]}
                     >
                         <Input value={username} onChange={ e => setUsername(e.target.value) }/>
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[{ required: true, message: 'Please input your email!' }]}
+                    >
+                        <Input value={email} onChange={ e => setEmail(e.target.value) }/>
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Role (Customer or Business)"
+                        name="role"
+                        rules={[{ required: true, message: 'Please input your role!' }]}
+                    >
+                        <Select value={role} onChange={(e) => setRole(e.target.value)}>
+                            <Option value="CUSTOMER">CUSTOMER</Option>
+                            <Option value="BUSINESS">BUSINESS</Option>
+                        </Select>
                     </Form.Item>
 
                     <Form.Item
