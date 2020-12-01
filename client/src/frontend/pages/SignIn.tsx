@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import{Row, Col, Button, Form, Input } from 'antd'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 
 import '../scss/SignIn.scss'
 
-const SignIn = () => {
+const isAuth = localStorage.getItem('appointments_management_login_token')
+
+const SignIn = ({ history }) => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    let history = useHistory();
+
 
     const handleLogin = async () => {
         try {
@@ -21,8 +23,8 @@ const SignIn = () => {
 
             const loginToken = result.data.accessToken
             localStorage.setItem('appointments_management_login_token', loginToken)
-
             history.push('/dashboard')
+
         } catch (error) {
             console.log(error.response.data.message)
         }
