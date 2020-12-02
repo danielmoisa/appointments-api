@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.scss'
 
-//Private route
+//Routes
 import PrivateRoute from './PrivateRoute'
+import NormalRoute from './NormalRoute'
 
 //Front pages
 import SignUp from './frontend/pages/SignUp'
@@ -14,22 +15,28 @@ import SignIn from './frontend/pages/SignIn'
 //Dashboard pages
 import Dashboard from './admin/pages/Dashboard'
 
-//Components
-import Header from './frontend/components/Header'
+//Layout
+import FrontLayout from './frontend/FontLayout'
+import AdminLayout from './admin/AdminLayout'
+
+
+//Context
+import { UserProvider } from './context/UserContext'
 
 
 const App: FC = () => {
   return (
     <div id="app-wrapper">
-     <Router>
-       <Header />
-          <Switch>
-            <Route path="/" component={Home} exact />
-            <Route path="/sign-up" component={SignUp} />
-            <Route path="/sign-in" component={SignIn} />
-            <PrivateRoute path="/dashboard" component={Dashboard}/>
-          </Switch>
-     </Router>
+      <UserProvider>
+        <Router>
+            <Switch>
+                <NormalRoute exact path="/" component={Home} layout={FrontLayout} />
+                <NormalRoute path="/sign-up" component={SignUp} layout={FrontLayout} />
+                <NormalRoute path="/sign-in" component={SignIn} layout={FrontLayout} />
+                <PrivateRoute path="/dashboard" component={Dashboard} layout={AdminLayout}/>
+            </Switch>
+        </Router>
+      </UserProvider>
     </div>
   );
 }

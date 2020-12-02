@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { UserContext } from '../../context/UserContext'
 
 import { Row, Col, Button, Space } from 'antd';
-import { PlusOutlined, LoginOutlined } from '@ant-design/icons';
+import { PlusOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 
 
 import '../scss/Header.scss'
 
 const Header = () => {
-    const [openLogin, setOpenLogin] = useState(false)
+    let history = useHistory()
+    const isAuth = useContext(UserContext)
 
-    const closeLoginDrawer = (): void => setOpenLogin(false)
+    const handleLogout = () => {
+        localStorage.removeItem('appointments_management_login_token')
+        history.push('/')
+    }
+
 
     return (
         <div className="header">
@@ -20,12 +26,18 @@ const Header = () => {
                 </Col>
                 <Col span={18} className="menu">
                <Space>
-                    <Button onClick={ () => setOpenLogin(!openLogin)}>
-                      <Link to="sign-in"><LoginOutlined /> Login</Link>
-                    </Button>
-                    <Button type="primary" >
-                    <Link to="/sign-up"><PlusOutlined /> Create account</Link>
-                    </Button>
+                  { isAuth ? 
+                        <Button onClick={handleLogout}><LogoutOutlined />Logout</Button>
+                      :
+                      <>
+                        <Button>
+                            <Link to="sign-in"><LoginOutlined /> Login</Link>
+                        </Button>
+                        <Button type="primary" >
+                            <Link to="/sign-up"><PlusOutlined /> Create account</Link>
+                        </Button>
+                        </>
+                    }
                </Space>
                 </Col>
             </Row>
