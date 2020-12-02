@@ -1,0 +1,22 @@
+@import '~antd/dist/antd.css';
+
+/*Default Ant override*/
+/*Forms*/
+.ant-form {
+  .ant-row.ant-form-item {
+    flex-direction: column;
+    .ant-col.ant-form-item-label {
+      text-align: left;
+    }
+  }
+}
+
+/*Drawer*/
+.ant-drawer {
+  .ant-drawer-content-wrapper {
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}
+/*End default Ant override*/
