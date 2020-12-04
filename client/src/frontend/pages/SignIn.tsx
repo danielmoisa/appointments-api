@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import{Row, Col, Button, Form, Input } from 'antd'
 import { Link, useHistory, Redirect } from 'react-router-dom'
-
+ 
 import '../scss/SignIn.scss'
 
-const isAuth = localStorage.getItem('appointments_management_login_token')
 
 const SignIn = ({ history }) => {
     const [password, setPassword] = useState('')

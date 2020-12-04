@@ -1,6 +1,14 @@
 @import '~antd/dist/antd.css';
+@import './variables';
 
 /*Default Ant override*/
+/*Buttons*/
+.ant-btn-primary {
+  background-color: $primaryColor;
+  &:focus {
+    background-color: $primaryColor;
+  }
+}
 /*Forms*/
 .ant-form {
   .ant-row.ant-form-item {

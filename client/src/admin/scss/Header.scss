@@ -1,0 +1,14 @@
+@import '../../variables';
+
+.admin-header {
+  background-color: $secondaryColor;
+  padding: 11px 25px;
+  .user-info {
+    text-align: right;
+    .admin-avatar {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

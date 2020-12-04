@@ -4,10 +4,10 @@ import { Route, Redirect } from "react-router-dom";
 const isAuth = localStorage.getItem('appointments_management_login_token')
 
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, layout: Layout, ...rest }) => (
     <Route {...rest} render={(props) => (
         isAuth
-            ? <Component {...props} />
+            ? <Layout><Component {...props} /></Layout>
             : <Redirect to='/sign-in' />
     )} />
 )
