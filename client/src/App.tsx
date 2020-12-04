@@ -14,6 +14,7 @@ import SignIn from './frontend/pages/SignIn'
 
 //Dashboard pages
 import Dashboard from './admin/pages/Dashboard'
+import Appointments from './admin/pages/Appointments'
 
 //Layout
 import FrontLayout from './frontend/FontLayout'
@@ -34,6 +35,7 @@ const App: FC = () => {
                 <NormalRoute path="/sign-up" component={SignUp} layout={FrontLayout} />
                 <NormalRoute path="/sign-in" component={SignIn} layout={FrontLayout} />
                 <PrivateRoute path="/dashboard" component={Dashboard} layout={AdminLayout}/>
+                <PrivateRoute path="/appointments" component={Appointments} layout={AdminLayout} />
             </Switch>
         </Router>
       </UserProvider>
