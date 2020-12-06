@@ -27,7 +27,7 @@ const SignUp = () => {
             setUsername('')
             setEmail('')
             setRole('')
-            setPassword('')
+			setPassword('')
 		} catch (error) {
 			console.log(error.response.data.message);
         }

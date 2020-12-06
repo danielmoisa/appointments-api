@@ -28,3 +28,35 @@
   }
 }
 /*End default Ant override*/
+
+/*Custom components*/
+.custom-button-primary {
+  background-color: $thirdColor;
+  border-radius: 25px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  a {
+    color: #000;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    span.anticon {
+      background-color: $primaryColor;
+      border-radius: 50%;
+      padding: 4px;
+      color: #fff;
+      margin-left: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  &:hover {
+    background-color: $primaryColor;
+    a {
+      color: #fff !important;
+      span.anticon {
+        background-color: $thirdColor;
+        color: #000;
+      }
+    }
+  }
+}

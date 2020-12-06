@@ -4,11 +4,24 @@
   background-color: $secondaryColor;
   padding: 11px 25px;
   .user-info {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .appointments-btn {
+      margin-right: 15px;
+    }
     .admin-avatar {
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+}
+.appointments-drawer {
+  .ant-drawer-content-wrapper {
+    width: 500px !important;
+    @media (max-width: 500px) {
+      width: 100vw !important;
     }
   }
 }

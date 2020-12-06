@@ -1,21 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 
-import { Row, Col, Button, Space } from 'antd';
-import { PlusOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Row, Col, Button, Space, message } from 'antd';
+import { PlusOutlined, LoginOutlined, RightOutlined } from '@ant-design/icons';
 
 
 import '../scss/Header.scss'
 
 const Header = () => {
-    let history = useHistory()
     const isAuth = useContext(UserContext)
-
-    const handleLogout = () => {
-        localStorage.removeItem('appointments_management_login_token')
-        history.push('/')
-    }
 
 
     return (
@@ -27,7 +21,7 @@ const Header = () => {
                 <Col span={18} className="menu">
                <Space>
                   { isAuth ? 
-                        <Button onClick={handleLogout}><LogoutOutlined />Logout</Button>
+                        <Button className="custom-button-primary"><Link to="/dashboard">Dashboard <RightOutlined /></Link></Button>
                       :
                       <>
                         <Button>
