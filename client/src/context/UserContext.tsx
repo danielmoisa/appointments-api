@@ -1,44 +1,39 @@
-import React, { createContext, useState, useEffect } from 'react'
-import { message } from 'antd'
-import {  useHistory } from 'react-router-dom'
+import React, { createContext, useState, useEffect } from "react";
+import { message } from "antd";
+import { useHistory } from "react-router-dom";
 
-export const UserContext = createContext('')
+type Context = {
+	isAuth: string | null;
+	loggedUser: boolean;
+};
 
-export const UserProvider = (props) => {
-    const isAuth: string | null = JSON.stringify(localStorage.getItem('appointments_management_login_token'))
+export const UserContext = createContext<Context>({
+	isAuth: "",
+	loggedUser: false,
+});
 
-    let history = useHistory()
-    const [loggedUser, setLoggedUser] = useState(false)
+export const UserProvider = props => {
+	const isAuth: string | null = JSON.stringify(
+		localStorage.getItem("appointments_management_login_token")
+	);
 
-    useEffect(() => {
-        if(isAuth) {
-            setLoggedUser(true)
-        }
-         
-    }, [])
+	let history = useHistory();
+	const [loggedUser, setLoggedUser] = useState(false);
 
-    const isLogged = {
-        isAuth: isAuth,
-        loggedUser: loggedUser
-    }
+	useEffect(() => {
+		if (isAuth) {
+			setLoggedUser(true);
+		}
+	}, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem('appointments_management_login_token')
-        setLoggedUser(false)
-        message.info({
-            content: 'Logged out with success',
-            duration: 3,
-            style: {
-              bottom: '30px',
-              right: '30px'
-            },
-          });
-        history.push('/')
-    }
+	const isLogged = {
+		isAuth: isAuth,
+		loggedUser: loggedUser,
+	};
 
-    return (
-        <UserContext.Provider value={{ isLogged }}>
-            { props.children }
-        </UserContext.Provider>
-    )
-}
+	return (
+		<UserContext.Provider value={{ isAuth, loggedUser }}>
+			{props.children}
+		</UserContext.Provider>
+	);
+};
