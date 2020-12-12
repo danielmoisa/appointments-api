@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
 	Row,
 	Col,
@@ -8,23 +8,29 @@ import {
 	Menu,
 	Drawer,
 	Button,
-	message,
+	message
 } from "antd";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom'
 
 import AppointmentForm from "../components/AppointmentForm";
 
 import "../scss/Header.scss";
 import { UserContext } from "../../context/UserContext";
 
+
 const Header = () => {
 	const [toggleDrawer, setToggleDrawer] = useState(false);
-	const { isAuth, loggedUser } = useContext(UserContext);
-	const history = useHistory();
+	let history = useHistory();
+	const {loggedUser, setLoggedUser } = useContext(UserContext);
+
+	
+
 
 	const handleLogout = () => {
 		localStorage.removeItem("appointments_management_login_token");
+
+		setLoggedUser(false)
 
 		message.info({
 			content: "Logged out with success",
@@ -33,9 +39,11 @@ const Header = () => {
 				bottom: "30px",
 				right: "30px",
 			},
-		});
+        });
 		history.push("/");
 	};
+  
+
 
 	const adminMenu = (
 		<Menu>

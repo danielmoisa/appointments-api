@@ -1,39 +1,33 @@
 import React, { createContext, useState, useEffect } from "react";
-import { message } from "antd";
-import { useHistory } from "react-router-dom";
 
-type Context = {
-	isAuth: string | null;
-	loggedUser: boolean;
-};
 
-export const UserContext = createContext<Context>({
-	isAuth: "",
-	loggedUser: false,
+export type User = {  
+	loggedUser: boolean,
+	setLoggedUser?: any
+};  
+
+export const UserContext = createContext<User>({
+	loggedUser: false
 });
 
-export const UserProvider = props => {
-	const isAuth: string | null = JSON.stringify(
-		localStorage.getItem("appointments_management_login_token")
-	);
 
-	let history = useHistory();
+export const UserProvider = props => {
+	const isAuth = localStorage.getItem("appointments_management_login_token")
+	
 	const [loggedUser, setLoggedUser] = useState(false);
 
 	useEffect(() => {
-		if (isAuth) {
-			setLoggedUser(true);
+		if(isAuth) {
+			setLoggedUser(true)
 		}
-	}, []);
+	}, [setLoggedUser])
 
-	const isLogged = {
-		isAuth: isAuth,
-		loggedUser: loggedUser,
-	};
+    const value = { loggedUser, setLoggedUser}
 
 	return (
-		<UserContext.Provider value={{ isAuth, loggedUser }}>
+		<UserContext.Provider value={value} >
 			{props.children}
 		</UserContext.Provider>
 	);
 };
+
