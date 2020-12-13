@@ -94,7 +94,7 @@ const data = [
 const Appointments = () => {
     const [searchText, setSearchText] = useState('')
     const [searchedColumn, setSearchedColumn] = useState('')
-    const [searchInput, setSearchInput]: any = useState('')
+    const [searchInput, setSearchInput]: any | null = useState('')
     const [loading, setLoading] = useState(true)
 
     setTimeout(() => {

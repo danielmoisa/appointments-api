@@ -19,9 +19,10 @@ const SignIn = () => {
                 method: 'POST',
                 url: 'http://localhost:4000/auth/signin',
                 headers: { 'Content-Type': 'application/json' },
-                data: JSON.stringify({ email, password }),
+                data: { email, password },
             })
-
+            console.log(result)
+            console.log(result.config.data.email)
             const loginToken = result.data.accessToken
             localStorage.setItem('appointments_management_login_token', loginToken)
             setLoggedUser(true)
