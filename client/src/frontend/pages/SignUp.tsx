@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Row, Col, Form, Input, Button, Checkbox, Select } from "antd";
+import { Row, Col, Form, Input, Button, Checkbox, Select, message } from "antd";
+import { Link, useHistory } from 'react-router-dom'
+
 
 import "../scss/SignUp.scss";
 
@@ -11,6 +13,7 @@ const SignUp = () => {
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [role, setRole] = useState("");
+	const history = useHistory()
 
 	const handleRole = value => {
 		setRole(value);
@@ -27,7 +30,16 @@ const SignUp = () => {
             setUsername('')
             setEmail('')
             setRole('')
-            setPassword('')
+			setPassword('')
+			history.push('/sign-in')
+			message.success({
+                content: 'Account created with success',
+                duration: 3,
+                style: {
+                  bottom: '30px',
+                  right: '30px'
+                },
+              });
 		} catch (error) {
 			console.log(error.response.data.message);
         }
@@ -126,6 +138,9 @@ const SignUp = () => {
 						</Button>
 					</Form.Item>
 				</Form>
+				<Row>
+                    <b>Already have an account? <Button type="link"><Link to="/sign-in">Login here</Link></Button></b>
+                </Row>
 			</Col>
 
 			<Col

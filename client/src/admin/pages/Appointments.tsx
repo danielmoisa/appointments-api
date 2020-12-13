@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, Input, Button, Space } from 'antd';
+import { Table, Input, Button, Space, Skeleton } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 
@@ -94,7 +94,12 @@ const data = [
 const Appointments = () => {
     const [searchText, setSearchText] = useState('')
     const [searchedColumn, setSearchedColumn] = useState('')
-    const [searchInput, setSearchInput]: any = useState('')
+    const [searchInput, setSearchInput]: any | null = useState('')
+    const [loading, setLoading] = useState(true)
+
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
 
     const getColumnSearchProps = dataIndex => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -193,7 +198,9 @@ const Appointments = () => {
       ];
     return (
         <div>
-            <Table columns={columns} dataSource={data} pagination={{ position: ['topRight', 'bottomRight'], pageSize: 10 }} />
+            <Skeleton loading={loading} active avatar>
+              <Table columns={columns} dataSource={data} pagination={{ position: ['topRight', 'bottomRight'] }} />
+            </Skeleton>
         </div>
     )
 }

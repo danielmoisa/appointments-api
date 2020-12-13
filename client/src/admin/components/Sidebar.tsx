@@ -21,7 +21,6 @@ const Sidebar = ({ toggleCollapsed, toggleSidebar }) => {
     return (
     <div className="admin-sidebar">
       <div className="sidebar-header">
-      <div className="logo"></div>
         <Button type="primary" onClick={toggleCollapsed} >
           {React.createElement(toggleSidebar ? MenuUnfoldOutlined : MenuFoldOutlined)}
         </Button>

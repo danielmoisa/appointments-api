@@ -1,15 +1,17 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
-import{Row, Col, Button, Form, Input } from 'antd'
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import{Row, Col, Button, Form, Input, message } from 'antd'
+import { Link, useHistory } from 'react-router-dom'
  
 import '../scss/SignIn.scss'
+import { UserContext } from '../../context/UserContext'
 
 
-const SignIn = ({ history }) => {
+const SignIn = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-
+    const history = useHistory()
+    const { setLoggedUser } = useContext(UserContext);
 
     const handleLogin = async () => {
         try {
@@ -17,15 +19,31 @@ const SignIn = ({ history }) => {
                 method: 'POST',
                 url: 'http://localhost:4000/auth/signin',
                 headers: { 'Content-Type': 'application/json' },
-                data: { email, password }
+                data: { email, password },
             })
-
+            console.log(result)
+            console.log(result.config.data.email)
             const loginToken = result.data.accessToken
             localStorage.setItem('appointments_management_login_token', loginToken)
+            setLoggedUser(true)
             history.push('/dashboard')
-
+            message.success({
+                content: 'Login with success',
+                duration: 3,
+                style: {
+                  bottom: '30px',
+                  right: '30px'
+                },
+              });
         } catch (error) {
-            console.log(error.response.data.message)
+            message.error({
+                content: 'Wrong email or password',
+                duration: 2,
+                style: {
+                  bottom: '30px',
+                  right: '30px'
+                },
+              });
         }
     }
 

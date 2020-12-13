@@ -6,6 +6,7 @@ import './App.scss'
 //Routes
 import PrivateRoute from './PrivateRoute'
 import NormalRoute from './NormalRoute'
+import LoggedPrivateRoute from './LoggedPrivateRoutes'
 
 //Front pages
 import SignUp from './frontend/pages/SignUp'
@@ -32,8 +33,8 @@ const App: FC = () => {
         <Router>
             <Switch>
                 <NormalRoute exact path="/" component={Home} layout={FrontLayout} />
-                <NormalRoute path="/sign-up" component={SignUp} layout={FrontLayout} />
-                <NormalRoute path="/sign-in" component={SignIn} layout={FrontLayout} />
+                <LoggedPrivateRoute path="/sign-up" component={SignUp} layout={FrontLayout} />
+                <LoggedPrivateRoute path="/sign-in" component={SignIn} layout={FrontLayout} />
                 <PrivateRoute path="/dashboard" component={Dashboard} layout={AdminLayout}/>
                 <PrivateRoute path="/appointments" component={Appointments} layout={AdminLayout} />
             </Switch>
